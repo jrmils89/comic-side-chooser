@@ -1,9 +1,6 @@
 module.exports = function(app,passport) {
 
-  var productsController = require('./controllers/products.js');
   var usersController     = require('./controllers/usersController');
-
-  app.use('/products', productsController);
   app.use('/users', usersController);
 
   app.get('/', function(req, res) {
@@ -15,7 +12,11 @@ module.exports = function(app,passport) {
   });
 
   app.get('/home', function(req, res) {
-   res.render('index.ejs', {loggedIn: res.locals.login})
+   if(res.locals.login) {
+     res.render('index.ejs', {loggedIn: res.locals.login})
+   } else {
+     res.redirect('/login')
+   }
   });
 
   app.get('/login', function(req, res) {
