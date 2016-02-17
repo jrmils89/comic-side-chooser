@@ -1,7 +1,6 @@
 var express = require('express');
 var router  = express.Router();
 var User = require('../models/user.js');
-
 // INDEX
 router.get('/', function(req, res) {
 	if (res.locals.login) {
@@ -33,10 +32,9 @@ router.get('/:id', function(req, res) {
 });
 
 router.delete('/:id', function(req, res) {
-  var userid = req.params.id;
-  User.findByIdAndRemove(userid, function(err, data) {
-    res.redirect('/users');
-  })
+	User.findByIdAndRemove(userid, function(err, data) {
+		res.redirect('/users');
+	})
 })
 
 

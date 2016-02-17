@@ -15,15 +15,16 @@ module.exports = function(app,passport) {
   });
 
   app.get('/home', function(req, res) {
-   res.render('index.ejs')
+   res.render('index.ejs', {loggedIn: res.locals.login})
   });
 
   app.get('/login', function(req, res) {
-    res.render('authenticate/login.ejs');
+    console.log(res.locals.login);
+    res.render('authenticate/login.ejs', {loggedIn: res.locals.login});
   });
 
   app.get('/signup', function(req, res) {
-    res.render('authenticate/signup.ejs');
+    res.render('authenticate/signup.ejs', {loggedIn: res.locals.login});
   });
 
   app.get('/logout', function(req, res) {
@@ -37,22 +38,7 @@ module.exports = function(app,passport) {
   }));
 
   app.post('/login', passport.authenticate('local-login', {failureRedirect: '/login' }), function(req, res) {
-    if(res.locals.login) {
       res.redirect('/home')
-    };
-  }
-
-  // , {
-  //   successRedirect : '/users/'+res.locals.login, // redirect to the secure profile section
-  //   failureRedirect : '/login', // redirect back to the signup page if there is an error
-  // }
-
-);
-
-  function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
-        return next();
-    res.redirect('/');
-  }
-
+    }
+  );
 }

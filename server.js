@@ -13,15 +13,16 @@ var db = mongoose.connection;
 var session        = require('express-session');
 var cookieParser   = require('cookie-parser');
 var passport       = require('passport');
+var port = process.env.PORT || 3000;
 
 // ===============================================================================
 // Setup Dat Port Info, like Columbus
 // ===============================================================================
-var port = process.env.PORT || 3000;
 
 // ===============================================================================
 // Middlewares
 // ===============================================================================
+mongoose.connect('mongodb://localhost:27017/emailcomposer');
 
 // Add ability to render static files
 app.use(express.static('public'));
@@ -38,13 +39,9 @@ app.set('layout extractScripts', true)
 app.set('layout extractStyles', true)
 
 // Setting up body parser
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Setting up method override
-app.use(methodOverride('_method'));
-
-mongoose.connect('mongodb://localhost:27017/emailcomposer');
 
 require('./config/passport')(passport);
 
@@ -53,7 +50,13 @@ app.use(cookieParser());
 app.use(session({ secret: 'emailcomposerapp' }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(methodOverride(function(req, res){
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
 app.use(function(req, res, next) {
   res.locals.login = req.isAuthenticated();
   next();
