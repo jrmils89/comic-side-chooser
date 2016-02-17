@@ -1,0 +1,8 @@
+<h1>Products</h1>
+<% for (var i = 0; i < products.length; i++) {%>
+    <div class='product'>
+      <a href='/products/<%= products[i].id %>'> <%= products[i].type %> </a>
+      <p>$<%= products[i].price %></p>
+    </div>
+<% } %><br/>
+<button><a href='/products/new'>Add A New Product</a></button>
