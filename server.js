@@ -10,6 +10,9 @@ var expressLayouts = require('express-ejs-layouts');
 var app = express();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+var session        = require('express-session');
+var cookieParser   = require('cookie-parser');
+var passport       = require('passport');
 
 // ===============================================================================
 // Setup Dat Port Info, like Columbus
@@ -41,24 +44,30 @@ app.use(bodyParser.json());
 // Setting up method override
 app.use(methodOverride('_method'));
 
-mongoose.connect('mongodb://localhost:27017/shopperapp');
+mongoose.connect('mongodb://localhost:27017/emailcomposer');
+
+require('./config/passport')(passport);
+
+app.use(cookieParser());
+
+app.use(session({ secret: 'emailcomposerapp' }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function(req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  next();
+});
 
 
 // ===============================================================================
 // Routing / Contorllers
 // ===============================================================================
-// var usersController = require('./controllers/users.js');
-var productsController = require('./controllers/products.js');
-app.use('/products', productsController);
-// app.use('/users', usersController);
+require('./routes.js')(app, passport);
 
 // ===============================================================================
 // Dis Means Bizness
 // ===============================================================================
-
-app.get('/', function(req, res) {
-  res.redirect('/products')
-})
 
 
 // ===============================================================================
