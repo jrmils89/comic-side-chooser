@@ -27,9 +27,6 @@ mongoose.connect('mongodb://localhost:27017/emailcomposer');
 // Add ability to render static files
 app.use(express.static('public'));
 
-// Setting up that stalker stuff
-logger.token('ip_address', function(req, res){ return req.connection._peername.address; });
-app.use(logger(':method :url :status :user-agent :ip_address :remote-addr :response-time ms -'));
 
 // Setup the use of ejs layouts
 app.set('view engine', 'ejs');
@@ -57,8 +54,15 @@ app.use(methodOverride(function(req, res){
     return method;
   }
 }));
+
+// Setting up that stalker stuff
+logger.token('ip_address', function(req, res){ return req.connection._peername.address; });
+logger.token('userid', function(req, res){ if (req.user) return req.user._id ; });
+
+app.use(logger(':method :url :status :user-agent :ip_address user_id: :userid :remote-addr :response-time ms'));
+
 app.use(function(req, res, next) {
-  res.locals.login = req.isAuthenticated();
+  res.locals.loggedIn = req.isAuthenticated();
   next();
 });
 

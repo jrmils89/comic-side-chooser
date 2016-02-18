@@ -13,19 +13,18 @@ module.exports = function(app,passport) {
 
   app.get('/home', function(req, res) {
    if(res.locals.login) {
-     res.render('index.ejs', {loggedIn: res.locals.login})
+     res.render('index.ejs')
    } else {
      res.redirect('/login')
    }
   });
 
   app.get('/login', function(req, res) {
-    console.log(res.locals.login);
-    res.render('authenticate/login.ejs', {loggedIn: res.locals.login});
+    res.render('authenticate/login.ejs');
   });
 
   app.get('/signup', function(req, res) {
-    res.render('authenticate/signup.ejs', {loggedIn: res.locals.login});
+    res.render('authenticate/signup.ejs');
   });
 
   app.get('/logout', function(req, res) {
