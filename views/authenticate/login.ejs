@@ -1,5 +1,32 @@
-<form action="/login" method="post">
-        <input type="text" name="email" placeholder="Email Address"><br/>
-        <input type="password" name="password" placeholder="Password"><br/>
-        <button type="submit" class="button submit" >Login</button>
-</form>
+<div class="body-container">
+  <div class="login-container">
+    <h1>Choose Your Side!<br/>Click Your Side To Login</h1>
+    <form id="login-form" action="/login" method="post">
+            <input type="text" name="email" placeholder="Email Address"><br/>
+            <input type="password" name="password" placeholder="Password"><br/>
+    </form>
+  </div>
+
+  <div class="content-container">
+    <section class="hero-side marvel marvel-text" id="marvel">
+      <div class="image-container-marvel">
+        <img src="images/marvel-landing/ironman.jpg" alt="" />
+        <img src="images/marvel-landing/spiderman.jpg" alt="" />
+        <img src="images/marvel-landing/avengers.jpg" alt="" />
+        <img src="images/marvel-landing/wolverine.jpg" alt="" />
+        <img src="images/marvel-landing/deadpool.jpg" alt="" />
+      </div>
+      <h2>Marvel</h2>
+    </section>
+    <section class="hero-side dc dc-text" id="dc">
+      <div class="image-container-dc">
+        <img src="images/dc-landing/batman.jpg" alt="" />
+        <img src="images/dc-landing/justiceleague.jpg" alt="" />
+        <img src="images/dc-landing/theflash.jpg" alt="" />
+        <img src="images/dc-landing/superman.jpg" alt="" />
+        <img src="images/dc-landing/wonderwoman.jpg" alt="" />
+      </div>
+      <h2>DC</h2>
+    </section>
+  </div>
+</div>

@@ -4,7 +4,7 @@ module.exports = function(app,passport) {
   app.use('/users', usersController);
 
   app.get('/', function(req, res) {
-   if(res.locals.login) {
+   if(res.locals.loggedIn) {
      res.redirect('/home')
    } else {
      res.redirect('/login')
@@ -12,7 +12,7 @@ module.exports = function(app,passport) {
   });
 
   app.get('/home', function(req, res) {
-   if(res.locals.login) {
+   if(res.locals.loggedIn) {
      res.render('index.ejs')
    } else {
      res.redirect('/login')
@@ -32,13 +32,17 @@ module.exports = function(app,passport) {
     res.redirect('/');
   });
 
+  app.get('/loginFail', function(req, res) {
+    res.send({result: {success: false}})
+  });
+
   app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/home', // redirect to the secure profile section
     failureRedirect : '/signup', // redirect back to the signup page if there is an error
   }));
 
-  app.post('/login', passport.authenticate('local-login', {failureRedirect: '/login' }), function(req, res) {
-      res.redirect('/home')
+  app.post('/login/:id', passport.authenticate('local-login', {failureRedirect: '/loginFail' }), function(req, res) {
+      res.send({result: {id: req.params.id, href: '/home', success: true}})
     }
   );
 }
