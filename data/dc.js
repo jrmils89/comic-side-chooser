@@ -150,21 +150,6 @@ module.exports = [
     "year":1956
   },
   {
-    "page_id":403631,
-    "name":"GenderTest",
-    "urlslug":"/wiki/GenderTest",
-    "id":"Secret Identity",
-    "align":"Good Characters",
-    "eye":"Blue Eyes",
-    "hair":"Blond Hair",
-    "sex":"Female Characters",
-    "gsm":null,
-    "alive":"Living Characters",
-    "appearances":1028,
-    "firstAppearances":"1956, October",
-    "year":1956
-  },
-  {
     "page_id":1459,
     "name":"Alan Scott (New Earth)",
     "urlslug":"/wiki/Alan_Scott_(New_Earth)",

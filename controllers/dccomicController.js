@@ -2,6 +2,8 @@ var express = require('express');
 var router  = express.Router();
 var DCComic = require('../models/dc.js');
 var dcData = require('../data/dc.js');
+var request = require('request');
+var baseURI = 'http://dc.wikia.com/api/v1/';
 
 
 router.get('/seed', function(req, res) {
@@ -11,6 +13,32 @@ router.get('/seed', function(req, res) {
   });
 })
 
+// router.get('/', function(req, res) {
+//   if (res.locals.loggedIn) {
+//     DCComic.aggregate(
+//      [
+//        { $sort : { appearances : -1} },
+//        {$limit: 25}
+//      ]
+//     ).exec(function(err, data) {
+//       // res.send(data);
+//       res.render('characters/home.ejs', {data: data});
+//     })
+//   }
+//   else {
+//     DCComic.aggregate(
+//      [
+//        { $sort : { appearances : -1} },
+//        {$limit: 5}
+//      ]
+//     ).exec(function(err, data) {
+//       // res.send(data);
+//       res.render('characters/home.ejs', {data: data});
+//     })
+//   }
+// })
+
+
 router.get('/', function(req, res) {
   if (res.locals.loggedIn) {
     DCComic.aggregate(
@@ -19,8 +47,17 @@ router.get('/', function(req, res) {
        {$limit: 25}
      ]
     ).exec(function(err, data) {
-      // res.send(data);
-      res.render('characters/home.ejs', {data: data});
+      var ids = [];
+      for (var i=0; i < data.length; i++) {
+        ids.push(data[i].page_id);
+      }
+      var heroIds = ids.join(',');
+      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=500&width=300&height=300', function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log(JSON.parse(body));
+          res.render('characters/home.ejs', {data: data, comic: 'dc', apiResults: JSON.parse(body)});
+        }
+      })
     })
   }
   else {
@@ -30,10 +67,20 @@ router.get('/', function(req, res) {
        {$limit: 5}
      ]
     ).exec(function(err, data) {
-      // res.send(data);
-      res.render('characters/home.ejs', {data: data});
+
+      var ids = [];
+      for (var i=0; i < data.length; i++) {
+        ids.push(data[i].page_id);
+      }
+
+      var heroIds = ids.join(',');
+
+      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=500&width=300&height=300', function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          res.render('characters/home.ejs', {data: data, comic: 'dc', apiResults: JSON.parse(body)});
+        }
+      })
     })
   }
 })
-
 module.exports = router;

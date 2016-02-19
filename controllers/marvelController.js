@@ -15,7 +15,7 @@ router.get('/seed', function(req, res) {
 
 
 router.get('/testAPI', function(req, res) {
-  request(baseURI+'Articles/Details'+'?ids=1678,7139&abstract=100&width=200&height=200', function(error, response, body) {
+  request(baseURI+'Articles/Details'+'?ids=1678,7139&abstract=500&width=200&height=200', function(error, response, body) {
     if (!error && response.statusCode == 200) {
       res.send(JSON.parse(body))
     }
@@ -38,9 +38,9 @@ router.get('/', function(req, res) {
 
       var heroIds = ids.join(',');
 
-      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=100&width=300&height=300', function(error, response, body) {
+      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=500&width=300&height=300', function(error, response, body) {
         if (!error && response.statusCode == 200) {
-          res.render('characters/home.ejs', {data: data, apiResults: JSON.parse(body)});
+          res.render('characters/home.ejs', {data: data, comic: 'marvel', apiResults: JSON.parse(body)});
         }
       })
     })
@@ -60,9 +60,9 @@ router.get('/', function(req, res) {
 
       var heroIds = ids.join(',');
 
-      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=100&width=300&height=300', function(error, response, body) {
+      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=500&width=300&height=300', function(error, response, body) {
         if (!error && response.statusCode == 200) {
-          res.render('characters/home.ejs', {data: data, apiResults: JSON.parse(body)});
+          res.render('characters/home.ejs', {data: data, comic: 'marvel', apiResults: JSON.parse(body)});
         }
       })
     })

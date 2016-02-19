@@ -3,11 +3,14 @@
   <div class="card-container h">
       <div class="front">
         <!--<%= data[i].name %>-->
+        <% if (apiResults.items[itemId].thumbnail != undefined) { %>
         <img class='index-image' src="<%= apiResults.items[itemId].thumbnail %>" alt="" />
+        <% } %>
       </div>
       <div class="back">
         <div class='character-container-card'>
-          Back
+          <h3><%= data[i].name %></h3>
+          <p><%= apiResults.items[itemId].abstract %><a href="http://<%= comic %>.wikia.com<%= data[i].urlslug %>">(Read More)</a></p>
         </div>
       </div>
   </div>

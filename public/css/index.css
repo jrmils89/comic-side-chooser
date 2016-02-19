@@ -219,10 +219,7 @@ h2 {
   display: none;
 }
 
-.front {
-  border: solid 1px black;
-  border-radius: 20px;
-}
+
 
 
 @media (min-width: 600px) {
@@ -233,6 +230,11 @@ h2 {
 
   .nav-bar li a {
     font-size: inherit;
+  }
+
+  .front {
+    border: solid 1px black;
+    border-radius: 20px;
   }
 
 
