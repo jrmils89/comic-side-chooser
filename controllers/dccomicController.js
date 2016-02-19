@@ -3,7 +3,7 @@ var router  = express.Router();
 var DCComic = require('../models/dc.js');
 var dcData = require('../data/dc.js');
 var request = require('request');
-var baseURI = 'http://dc.wikia.com/api/v1/';
+var baseURI = 'https://dc.wikia.com/api/v1/';
 
 
 router.get('/seed', function(req, res) {

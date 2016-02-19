@@ -3,7 +3,7 @@ var router  = express.Router();
 var Marvel = require('../models/marvel.js');
 var marvelData = require('../data/marvel.js');
 var request = require('request');
-var baseURI = 'http://marvel.wikia.com/api/v1/';
+var baseURI = 'https://marvel.wikia.com/api/v1/';
 
 
 router.get('/seed', function(req, res) {
