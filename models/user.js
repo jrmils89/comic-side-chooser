@@ -12,7 +12,8 @@ var userSchema = new Schema({
   local: {
     email: {type: String, unique: true},
     password: {type: String, required: true},
-  }
+  },
+  comicSide: String
 })
 
 userSchema.methods.generateHash = function(password) {

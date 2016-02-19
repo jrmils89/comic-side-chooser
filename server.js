@@ -22,7 +22,7 @@ var port = process.env.PORT || 3000;
 // ===============================================================================
 // Middlewares
 // ===============================================================================
-mongoose.connect('mongodb://localhost:27017/emailcomposer');
+mongoose.connect('mongodb://localhost:27017/comic-side');
 
 // Add ability to render static files
 app.use(express.static('public'));

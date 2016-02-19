@@ -1,7 +1,8 @@
 module.exports = function(app,passport) {
-
+  var User = require('./models/user.js');
   var usersController     = require('./controllers/usersController');
   app.use('/users', usersController);
+
 
   app.get('/', function(req, res) {
    if(res.locals.loggedIn) {
@@ -20,7 +21,12 @@ module.exports = function(app,passport) {
   });
 
   app.get('/login', function(req, res) {
-    res.render('authenticate/login.ejs');
+    if(res.locals.loggedIn) {
+      res.redirect('/home')
+    }
+    else {
+      res.render('authenticate/login.ejs')
+    };
   });
 
   app.get('/signup', function(req, res) {
@@ -36,13 +42,17 @@ module.exports = function(app,passport) {
     res.send({result: {success: false}})
   });
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/home', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-  }));
+  app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/loginFail' }),
+    function(req, res) {
+      res.redirect('/home/'+req.user.comicSide);
+    }
+  );
 
   app.post('/login/:id', passport.authenticate('local-login', {failureRedirect: '/loginFail' }), function(req, res) {
-      res.send({result: {id: req.params.id, href: '/home', success: true}})
+      console.log(req.user);
+      User.findByIdAndUpdate(req.user.id, { comicSide: req.params.id }, {upsert: true}, function(err, user) {
+          res.send({result: {id: req.params.id, href: '/home', success: true}})
+      })
     }
   );
 }
