@@ -3,24 +3,24 @@ module.exports = function(app,passport) {
   var usersController = require('./controllers/usersController');
   var marvelController = require('./controllers/marvelController');
   var dccomicController = require('./controllers/dccomicController');
+  var profilesController = require('./controllers/profilesController');
 
   app.use('/users', usersController);
   app.use('/marvel', marvelController);
   app.use('/dc', dccomicController);
+  app.use('/profile', profilesController);
 
   app.get('/', function(req, res) {
    if(res.locals.loggedIn) {
-     res.redirect('/home')
+     res.redirect('/profile/'+res.locals.username)
    } else {
      res.redirect('/login')
    }
   });
 
   app.get('/home', function(req, res) {
-   if(res.locals.loggedIn && res.locals.comicSide == 'marvel') {
-     res.render('home/marvel.ejs')
-   } else if (res.locals.loggedIn && res.locals.comicSide == 'dc') {
-     res.render('home/dc.ejs')
+   if(res.locals.loggedIn ){
+     res.redirect('/profile/'+res.locals.username)
    }
    else {
      res.redirect('/login')
@@ -55,7 +55,7 @@ module.exports = function(app,passport) {
 
   app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/loginFail' }),
     function(req, res) {
-      res.redirect('/home/'+req.user.comicSide);
+      res.redirect('/');
     }
   );
 

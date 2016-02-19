@@ -111,6 +111,19 @@ button:hover {
   color: #4ed4b3;
 }
 
+.body-container {
+  padding-top: .3em;
+}
+
+a {
+  color: #51b0d7;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #4ed4b3;
+}
+
 .login-container {
   max-width: 40%;
   overflow: hidden;
@@ -208,6 +221,7 @@ h2 {
 
 .front {
   border: solid 1px black;
+  border-radius: 20px;
 }
 
 

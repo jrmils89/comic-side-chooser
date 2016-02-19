@@ -2,6 +2,8 @@ var express = require('express');
 var router  = express.Router();
 var Marvel = require('../models/marvel.js');
 var marvelData = require('../data/marvel.js');
+var request = require('request');
+var baseURI = 'http://marvel.wikia.com/api/v1/';
 
 
 router.get('/seed', function(req, res) {
@@ -9,6 +11,15 @@ router.get('/seed', function(req, res) {
       console.log('Seeded?!');
       res.send(marvelData);
   });
+})
+
+
+router.get('/testAPI', function(req, res) {
+  request(baseURI+'Articles/Details'+'?ids=1678,7139&abstract=100&width=200&height=200', function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      res.send(JSON.parse(body))
+    }
+  })
 })
 
 
@@ -20,8 +31,18 @@ router.get('/', function(req, res) {
        {$limit: 25}
      ]
     ).exec(function(err, data) {
-      // res.send(data);
-      res.render('characters/home.ejs', {data: data});
+      var ids = [];
+      for (var i=0; i < data.length; i++) {
+        ids.push(data[i].page_id);
+      }
+
+      var heroIds = ids.join(',');
+
+      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=100&width=300&height=300', function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          res.render('characters/home.ejs', {data: data, apiResults: JSON.parse(body)});
+        }
+      })
     })
   }
   else {
@@ -31,8 +52,19 @@ router.get('/', function(req, res) {
        {$limit: 5}
      ]
     ).exec(function(err, data) {
-      // res.send(data);
-      res.render('characters/home.ejs', {data: data});
+
+      var ids = [];
+      for (var i=0; i < data.length; i++) {
+        ids.push(data[i].page_id);
+      }
+
+      var heroIds = ids.join(',');
+
+      request(baseURI+'Articles/Details?ids='+heroIds+'&abstract=100&width=300&height=300', function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          res.render('characters/home.ejs', {data: data, apiResults: JSON.parse(body)});
+        }
+      })
     })
   }
 })

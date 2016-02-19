@@ -2,7 +2,7 @@
 <div class="nav-bar">
   <% if(loggedIn) {%>
     <li><a href="/">Home</a></li>
-    <li><a href="/profile">Profile</a></li>
+    <li><a href="/profile/<%= username %>">Profile</a></li>
   <% } %>
   <% if(!loggedIn) {%>
     <li><a href="/">Home</a></li>
@@ -11,6 +11,9 @@
   <li><a href="/marvel">Marvel Characters</a></li>
   <li><a href="/dc">DC Characters</a></li>
   <li><a href="/about">About</a></li>
+  <% if(!loggedIn) {%>
+    <li><a href="/login">Login</a></li>
+  <% } %>
   <% if(loggedIn) {%>
     <li><a href="/logout">Logout</a></li>
   <% } %>

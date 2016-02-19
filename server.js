@@ -63,13 +63,16 @@ logger.token('userid', function(req, res){ if (req.user) return req.user._id ; }
 
 app.use(logger(':method :url :status :user-agent :ip_address user_id: :userid :remote-addr :response-time ms'));
 
-app.use(function(req, res, next) {
-  res.locals.loggedIn = req.isAuthenticated();
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.locals.loggedIn = req.isAuthenticated();
+//   next();
+// });
 
 app.use(function(req, res, next) {
+  res.locals.loggedIn = req.isAuthenticated();
   if (req.user) {
+    res.locals.userId = req.user._id;
+    res.locals.username = req.user.username;
     res.locals.comicSide = req.user.comicSide;
     if (req.user.comicSide == 'marvel') {
       res.locals.otherSide = 'dc'
