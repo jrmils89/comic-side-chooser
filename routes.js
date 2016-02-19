@@ -1,8 +1,12 @@
 module.exports = function(app,passport) {
   var User = require('./models/user.js');
-  var usersController     = require('./controllers/usersController');
-  app.use('/users', usersController);
+  var usersController = require('./controllers/usersController');
+  var marvelController = require('./controllers/marvelController');
+  var dccomicController = require('./controllers/dccomicController');
 
+  app.use('/users', usersController);
+  app.use('/marvel', marvelController);
+  app.use('/dc', dccomicController);
 
   app.get('/', function(req, res) {
    if(res.locals.loggedIn) {
