@@ -22,7 +22,9 @@ var port = process.env.PORT || 3000;
 // ===============================================================================
 // Middlewares
 // ===============================================================================
-mongoose.connect('mongodb://localhost:27017/comic-side');
+
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/comic-side';
+mongoose.connect(mongoUri);
 
 // Add ability to render static files
 app.use(express.static('public'));
