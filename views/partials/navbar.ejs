@@ -1,7 +1,8 @@
+
 <div class="nav-bar">
   <% if(loggedIn) {%>
   <li><a href="/">Home</a></li>
-  <li><a href="/">Switch Sides</a></li>
+  <li><a href="/<%=otherSide%>">Check Out The Other Side</a></li>
   <li><a href="/logout">Logout</a></li>
   <% } %>
   <% if(!loggedIn) {%>
@@ -9,3 +10,4 @@
     <li><a href="/signup">Signup</a></li>
   <% } %>
 </div>
+

@@ -66,6 +66,19 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use(function(req, res, next) {
+  if (req.user) {
+    res.locals.comicSide = req.user.comicSide;
+    if (req.user.comicSide == 'marvel') {
+      res.locals.otherSide = 'dc'
+    } else if (req.user.comicSide == 'dc') {
+      res.locals.otherSide = 'marvel'
+    }
+    next();
+  }
+  next();
+});
+
 
 // ===============================================================================
 // Routing / Contorllers

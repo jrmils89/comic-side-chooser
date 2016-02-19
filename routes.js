@@ -13,9 +13,12 @@ module.exports = function(app,passport) {
   });
 
   app.get('/home', function(req, res) {
-   if(res.locals.loggedIn) {
-     res.render('index.ejs')
-   } else {
+   if(res.locals.loggedIn && res.locals.comicSide == 'marvel') {
+     res.render('home/marvel.ejs')
+   } else if (res.locals.loggedIn && res.locals.comicSide == 'dc') {
+     res.render('home/dc.ejs')
+   }
+   else {
      res.redirect('/login')
    }
   });

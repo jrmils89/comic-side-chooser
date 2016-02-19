@@ -8,7 +8,7 @@ window.onload = function() {
     document.getElementById("marvel").addEventListener("click", function () {
       var data = $('#login-form').serializeArray()
       $.post( "/login/marvel", data, function(result) {
-          if (result.result.success) {location.href=result.result.href+'/'+result.result.id} else {
+          if (result.result.success) {location.href=result.result.href} else {
             console.log("Fail")
           }
       } );
@@ -22,7 +22,7 @@ window.onload = function() {
     document.getElementById("dc").addEventListener("click", function () {
       var data = $('#login-form').serializeArray()
       $.post( "/login/dc", data, function(result) {
-          if (result.result.success) {location.href=result.result.href+'/'+result.result.id} else {
+          if (result.result.success) {location.href=result.result.href} else {
             console.log("Fail")
           }
       } );
