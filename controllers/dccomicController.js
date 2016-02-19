@@ -11,4 +11,29 @@ router.get('/seed', function(req, res) {
   });
 })
 
+router.get('/', function(req, res) {
+  if (res.locals.loggedIn) {
+    DCComic.aggregate(
+     [
+       { $sort : { appearances : -1} },
+       {$limit: 25}
+     ]
+    ).exec(function(err, data) {
+      // res.send(data);
+      res.render('characters/home.ejs', {data: data});
+    })
+  }
+  else {
+    DCComic.aggregate(
+     [
+       { $sort : { appearances : -1} },
+       {$limit: 5}
+     ]
+    ).exec(function(err, data) {
+      // res.send(data);
+      res.render('characters/home.ejs', {data: data});
+    })
+  }
+})
+
 module.exports = router;

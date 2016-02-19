@@ -21,7 +21,7 @@ router.get('/', function(req, res) {
      ]
     ).exec(function(err, data) {
       // res.send(data);
-      res.render('marvel/home.ejs', {data: data});
+      res.render('characters/home.ejs', {data: data});
     })
   }
   else {
@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
      ]
     ).exec(function(err, data) {
       // res.send(data);
-      res.render('marvel/home.ejs', {data: data});
+      res.render('characters/home.ejs', {data: data});
     })
   }
 })

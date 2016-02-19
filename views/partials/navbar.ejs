@@ -1,15 +1,18 @@
 
 <div class="nav-bar">
   <% if(loggedIn) {%>
-  <li><a href="/">Home</a></li>
-  <li><a href="/<%=otherSide%>">Check Out The Other Side</a></li>
-  <li><a href="/logout">Logout</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/profile">Profile</a></li>
   <% } %>
   <% if(!loggedIn) {%>
     <li><a href="/">Home</a></li>
     <li><a href="/signup">Signup</a></li>
   <% } %>
   <li><a href="/marvel">Marvel Characters</a></li>
+  <li><a href="/dc">DC Characters</a></li>
   <li><a href="/about">About</a></li>
+  <% if(loggedIn) {%>
+    <li><a href="/logout">Logout</a></li>
+  <% } %>
 </div>
 
