@@ -40,6 +40,10 @@ module.exports = function(app,passport) {
     res.render('authenticate/signup.ejs');
   });
 
+  app.get('/about', function(req, res) {
+    res.render('about.ejs');
+  });
+
   app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
@@ -58,7 +62,7 @@ module.exports = function(app,passport) {
   app.post('/login/:id', passport.authenticate('local-login', {failureRedirect: '/loginFail' }), function(req, res) {
       console.log(req.user);
       User.findByIdAndUpdate(req.user.id, { comicSide: req.params.id }, {upsert: true}, function(err, user) {
-          res.send({result: {id: req.params.id, href: '/home', success: true}})
+          res.send({result: {id: req.params.id, href: '/'+req.params.id, success: true}})
       })
     }
   );

@@ -76,7 +76,6 @@ app.use(function(req, res, next) {
     } else if (req.user.comicSide == 'dc') {
       res.locals.otherSide = 'marvel'
     }
-    next();
   }
   next();
 });
