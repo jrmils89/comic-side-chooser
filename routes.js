@@ -12,7 +12,7 @@ module.exports = function(app,passport) {
 
   app.get('/', function(req, res) {
    if(res.locals.loggedIn) {
-     res.redirect('/profile/'+res.locals.username)
+     res.redirect('/profile/'+res.locals.userName)
    } else {
      res.redirect('/login')
    }

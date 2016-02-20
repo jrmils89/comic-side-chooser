@@ -160,6 +160,15 @@ a:hover {
   color: white;
 }
 
+.marvel-favorites {
+  background: #ba3232;
+  margin-top: 2em;
+}
+
+.dc-favorites {
+  background: #003F5E;
+}
+
 .hero-side:hover {
   cursor: pointer;
 }
@@ -209,12 +218,117 @@ h2 {
   margin-bottom: .2em;
 }
 
+.card-container-mini .index-image {
+  border-radius: 5px;
+}
+
 .back {
   display: none;
 }
 
+.marvel-favorites, .dc-favorites {
+  height: 8em;
+  border: solid 1px black;
+  margin-bottom: .2em;
+  overflow: scroll;
+  padding: 10px;
+  border-radius: 10px;
 
+}
 
+#favorites {
+  width: 25%;
+  float: left;
+  height: 25%;
+  overflow: scroll;
+  background: #6c7b8b;
+  transform: translateY(-.3em);
+  padding-top: .3em;
+  border-right: solid black 1px;
+  border-bottom: solid black 1px;
+}
+
+.profile-info {
+  float: left;
+  width: 25%;
+  transform: translateY(-.3em);
+  background: #b4b4b4;
+  height: 75%;
+  padding-top: .2em;
+  border-right: solid 1px black;
+  font-size: 1em;
+}
+
+.favorites-header {
+  width: 100%;
+  position: absolute;
+  font-size: 1em;
+}
+
+#profile-container {
+  background: #454545;
+  height: 100%;
+  transform: translateY(-.3em);
+  float: right;
+  width: 75%;
+}
+
+.edit-profile input {
+  width: 85%;
+  height: 1.2em;
+  border-radius: 5px;
+  margin-bottom: .2em;
+}
+.edit-profile label {
+  font-size: .7em;
+  width: 100%;
+  text-align: center;
+}
+
+.no-border {
+  border: none;
+  color: black;
+  font-size: .7em;
+}
+
+.edit-button {
+  width: 75%;
+  height: 1.4em;
+  font-size: 1em;
+  padding: 2px;
+  border: solid 1px gray;
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+
+.edit-button-submit {
+  width: 75%;
+  height: 1.4em;
+  font-size: 1em;
+  padding: 2px;
+  border: solid 1px gray;
+  margin-top: .2em;
+  margin-bottom: .2em;
+}
+
+.edit-button-submit:hover {
+  border-color: inherit;
+  color: inherit;
+}
+
+select {
+  font-family: 'Code', sans-serif;
+  width: 75%;
+  height: 1.2em;
+  background: transparent;
+  border: none;
+}
+
+.gif-logo img {
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
 
 @media (min-width: 600px) {
 
@@ -225,6 +339,16 @@ h2 {
   .content-container {
     position: absolute;;
     top: 2em;
+  }
+
+  #favorites {
+    display: flex;
+  }
+
+  .marvel-favorites, .dc-favorites {
+    width: 45%;
+    box-shadow: 0 0 2px gray;
+    margin-top: 2em;
   }
 
   .nav-bar {
@@ -262,6 +386,17 @@ h2 {
     display: inline-block;
     margin-bottom: .2em;
   }
+
+  .card-container-mini {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    perspective: 500px;
+    display: inline-block;
+    margin-bottom: .2em;
+  }
+
+
   .card-container.h:hover .front, .card-container.h.flip .front{
     transform: rotateY(180deg);
   }
@@ -291,7 +426,22 @@ h2 {
     padding: 15px;
   }
 
+  .character-container-card-mini {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-size: .2em;
+    overflow: scroll;
+    padding: 3px;
+  }
+
   .character-container-card:hover {
     box-shadow: 0 0 40px gray;
+  }
+
+  .character-container-card-mini:hover {
+    box-shadow: 0 0 5px gray;
   }
 }

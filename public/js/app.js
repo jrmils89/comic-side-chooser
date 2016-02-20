@@ -53,5 +53,13 @@ window.onload = function() {
     timeout: 2000
   });
 
+  $("#edit-profile-button").click(function() {
+    $( "input" ).prop( "disabled", false );
+    $( "input" ).css("background-color", "white");
+    $( "select" ).prop( "disabled", false );
+
+    $('#edit-button-submit').css("display", "block");
+    $('#edit-button-submit').removeAttr("disabled");
+  })
 
 };

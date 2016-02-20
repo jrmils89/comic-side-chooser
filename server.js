@@ -72,7 +72,7 @@ app.use(function(req, res, next) {
   res.locals.loggedIn = req.isAuthenticated();
   if (req.user) {
     res.locals.userId = req.user._id;
-    res.locals.username = req.user.username;
+    res.locals.userName = req.user.username;
     res.locals.comicSide = req.user.comicSide;
     if (req.user.comicSide == 'marvel') {
       res.locals.otherSide = 'dc'

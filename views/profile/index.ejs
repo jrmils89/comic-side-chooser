@@ -1,1 +1,69 @@
-<%= username %>
+<section id="favorites">
+  <h1 class="favorites-header">Favorites</h1>
+
+  <section class="marvel-favorites">
+    <div class="favorite">SpiderMan</div>
+    <div class="favorite">Wolverine</div>
+    <div class="favorite">Deadpool</div>
+    <div class="favorite">Human Torch</div>
+    <div class="favorite">Iron Man</div>
+  </section>
+  <section class="dc-favorites">
+    <div class="card-container-mini h">
+        <div class="front">
+          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
+        </div>
+    </div>
+    <div class="card-container-mini h">
+        <div class="front">
+          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
+        </div>
+    </div>
+    <div class="card-container-mini h">
+        <div class="front">
+          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
+        </div>
+    </div>
+    <div class="card-container-mini h">
+        <div class="front">
+          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
+        </div>
+    </div>
+  </section>
+</section>
+<section id="profile-container">
+  <% if (comicSide == 'marvel') { %>
+    <div class="gif-logo">
+      <img src="/gifs/Marvel-Logo.gif" alt="Marvel Logo" />
+    </div>
+  <% } else { %>
+    <div class="gif-logo">
+      <img src="/gifs/DC-Logo.gif" alt="DC Comics Logo" />
+    </div>
+  <% } %>
+
+
+</section>
+<section class="profile-info">
+  <h3>Profile Info</h3>
+  <% if (userName == username) {%>
+    <button id="edit-profile-button" class="edit-button">Edit</button>
+  <%}%>
+  <form class="edit-profile" action="/profile/<%= username %>" method="post">
+    <label for="username">Username</label><br/>
+    <input class="no-border" type="text" name="username" value="<%= username %>" disabled><br/>
+    <label for="email">Email</label><br/>
+    <input class="no-border" type="text" name="email" value="<%= local.email %>" disabled><br/>
+    <label for="comicSide">Side</label><br/>
+    <select name="comicSide" disabled>
+      <% if (comicSide == 'marvel') { %>
+        <option value="dc" >DC</option>
+        <option value="marvel" selected>Marvel</option>
+      <% } else { %>
+        <option value="dc" selected>DC</option>
+        <option value="marvel">Marvel</option>
+      <% } %>
+    </select>
+    <button id="edit-button-submit" class="edit-button-submit" style="display: none;" type="submit" name="button" disabled="disabled">Submit</button>
+  </form>
+</section>

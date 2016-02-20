@@ -2,7 +2,6 @@
   var itemId = data[i].page_id; %>
   <div class="card-container h">
       <div class="front">
-        <!--<%= data[i].name %>-->
         <% if (apiResults.items[itemId].thumbnail != undefined) { %>
         <img class='index-image' src="<%= apiResults.items[itemId].thumbnail %>" alt="" />
         <% } %>
