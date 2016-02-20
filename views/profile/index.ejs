@@ -7,6 +7,9 @@
       <% if (apiResultsmarvel.items[itemId].thumbnail != undefined) { %>
         <div class="card-container-mini h">
           <div class="front">
+              <form action="/users/<%= userId %>/marvel/<%= itemId %>" method="post">
+                <button type="submit" name="button">Remove</button>
+              </form>
               <img class='index-image' src="<%= apiResultsmarvel.items[itemId].thumbnail %>" alt="" />
             </div>
         </div>
@@ -19,6 +22,9 @@
       <% if (apiResultsdc.items[dcitemId].thumbnail != undefined) { %>
         <div class="card-container-mini h">
           <div class="front">
+            <form action="/users/<%= userId %>/dc/<%= dcitemId %>" method="post">
+              <button type="submit" name="button">Remove</button>
+            </form>
               <img class='index-image' src="<%= apiResultsdc.items[dcitemId].thumbnail %>" alt="" />
             </div>
         </div>

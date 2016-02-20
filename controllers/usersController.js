@@ -31,6 +31,23 @@ router.get('/:id', function(req, res) {
 	}
 });
 
+router.post('/:id/marvel/:page_id', function(req, res) {
+	var userId = req.params.id;
+	var characterToRemove = req.params.page_id;
+	User.findByIdAndUpdate(userId, { $pull: { marvelFavorites: characterToRemove}}, {new: true}, function(err, data) {
+		res.redirect('/profile/'+data.username)
+	})
+})
+
+router.post('/:id/dc/:page_id', function(req, res) {
+	var userId = req.params.id;
+	var characterToRemove = req.params.page_id;
+	User.findByIdAndUpdate(userId, { $pull: { dcFavorites: characterToRemove}}, {new: true}, function(err, data) {
+		res.redirect('/profile/'+data.username)
+	})
+})
+
+
 router.delete('/:id', function(req, res) {
 	User.findByIdAndRemove(userid, function(err, data) {
 		res.redirect('/users');
