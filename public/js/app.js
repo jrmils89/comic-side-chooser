@@ -43,14 +43,14 @@ window.onload = function() {
 
   $('.image-container-marvel').cycle({
     fx: 'fadeout',
-    speed: 700,
-    timeout: 1000
+    speed: 1200,
+    timeout: 1800
   });
 
   $('.image-container-dc').cycle({
     fx: 'fadeout',
-    speed: 700,
-    timeout: 950
+    speed: 1200,
+    timeout: 2000
   });
 
 
