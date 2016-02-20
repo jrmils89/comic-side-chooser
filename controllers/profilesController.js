@@ -1,11 +1,28 @@
 var express = require('express');
 var router  = express.Router();
 var User = require('../models/user.js');
+var request = require('request');
+var marvelbaseURI = 'https://marvel.wikia.com/api/v1/';
+var dcbaseURI = 'https://dc.wikia.com/api/v1/';
+
 
 router.get('/:id',isLoggedIn, function(req,res) {
   var username = req.params.id;
   User.findOne({ 'username': username }, function (err, user) {
-    res.render('profile/index.ejs', user)
+    request(marvelbaseURI+'Articles/Details?ids='+user.marvelFavorites+'&abstract=5&width=300&height=300', function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log("Marvel Request")
+        var marvelBody = JSON.parse(body);
+        request(dcbaseURI+'Articles/Details?ids='+user.dcFavorites+'&abstract=5&width=300&height=300', function(error, response, body) {
+          if (!error && response.statusCode == 200) {
+            console.log("DC Request");
+            console.log(marvelBody);
+            console.log(body);
+            res.render('profile/index.ejs', {user: user, apiResultsmarvel: marvelBody, apiResultsdc: JSON.parse(body)})
+          }
+        })
+      }
+    })
   })
 })
 

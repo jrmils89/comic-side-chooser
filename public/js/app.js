@@ -1,5 +1,4 @@
 window.onload = function() {
-  console.log('Hello');
 
   var marvelLoginButtonForm = document.getElementById("marvel");
 

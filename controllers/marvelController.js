@@ -4,6 +4,8 @@ var Marvel = require('../models/marvel.js');
 var marvelData = require('../data/marvel.js');
 var request = require('request');
 var baseURI = 'https://marvel.wikia.com/api/v1/';
+var User = require('../models/user.js');
+
 
 
 router.get('/seed', function(req, res) {
@@ -11,7 +13,7 @@ router.get('/seed', function(req, res) {
       console.log('Seeded?!');
       res.send(marvelData);
   });
-})
+});
 
 
 router.get('/testAPI', function(req, res) {
@@ -20,7 +22,7 @@ router.get('/testAPI', function(req, res) {
       res.send(JSON.parse(body))
     }
   })
-})
+});
 
 
 router.get('/', function(req, res) {
@@ -67,6 +69,21 @@ router.get('/', function(req, res) {
       })
     })
   }
+});
+
+
+router.post('/favorites/:id', function(req, res) {
+  if (res.locals.loggedIn) {
+    User.findOneAndUpdate(res.locals.userId, { $push: { marvelFavorites: req.params.id } }, function(err, data) {
+      res.redirect('/marvel');
+    })
+  }
+  else {
+    res.redirect('/marvel');
+  }
 })
+
+
+
 
 module.exports = router;

@@ -9,6 +9,11 @@
       <div class="back">
         <div class='character-container-card'>
           <h3><%= data[i].name %></h3>
+          <% if (loggedIn) {%>
+            <form class="" action="<%=comic%>/favorites/<%= data[i].page_id %>" method="post">
+              <button type="submit" name="button">Favorite</button>
+            </form>
+          <% } %>
           <p><%= apiResults.items[itemId].abstract %><a href="http://<%= comic %>.wikia.com<%= data[i].urlslug %>">(Read More)</a></p>
         </div>
       </div>

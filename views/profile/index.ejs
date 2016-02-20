@@ -2,33 +2,28 @@
   <h1 class="favorites-header">Favorites</h1>
 
   <section class="marvel-favorites">
-    <div class="favorite">SpiderMan</div>
-    <div class="favorite">Wolverine</div>
-    <div class="favorite">Deadpool</div>
-    <div class="favorite">Human Torch</div>
-    <div class="favorite">Iron Man</div>
+    <% for (var i = 0; i < user.marvelFavorites.length; i++) {%>
+      <% var itemId = user.marvelFavorites[i]; %>
+      <% if (apiResultsmarvel.items[itemId].thumbnail != undefined) { %>
+        <div class="card-container-mini h">
+          <div class="front">
+              <img class='index-image' src="<%= apiResultsmarvel.items[itemId].thumbnail %>" alt="" />
+            </div>
+        </div>
+      <% } %>
+    <% } %>
   </section>
   <section class="dc-favorites">
-    <div class="card-container-mini h">
-        <div class="front">
-          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
+    <% for (var i = 0; i < user.dcFavorites.length; i++) {%>
+      <% var dcitemId = user.dcFavorites[i]; %>
+      <% if (apiResultsdc.items[dcitemId].thumbnail != undefined) { %>
+        <div class="card-container-mini h">
+          <div class="front">
+              <img class='index-image' src="<%= apiResultsdc.items[dcitemId].thumbnail %>" alt="" />
+            </div>
         </div>
-    </div>
-    <div class="card-container-mini h">
-        <div class="front">
-          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
-        </div>
-    </div>
-    <div class="card-container-mini h">
-        <div class="front">
-          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
-        </div>
-    </div>
-    <div class="card-container-mini h">
-        <div class="front">
-          <img class="index-image" src="http://vignette3.wikia.nocookie.net/marvel_dc/images/1/14/Superman_0002.jpg/revision/latest/window-crop/width/300/x-offset/0/y-offset/0/window-width/400/window-height/400?cb=20100419210629" alt="">
-        </div>
-    </div>
+      <% } %>
+    <% } %>
   </section>
 </section>
 <section id="profile-container">
@@ -46,14 +41,14 @@
 </section>
 <section class="profile-info">
   <h3>Profile Info</h3>
-  <% if (userName == username) {%>
+  <% if (userName == user.username) {%>
     <button id="edit-profile-button" class="edit-button">Edit</button>
   <%}%>
-  <form class="edit-profile" action="/profile/<%= username %>" method="post">
+  <form class="edit-profile" action="/profile/<%= user.username %>" method="post">
     <label for="username">Username</label><br/>
-    <input class="no-border" type="text" name="username" value="<%= username %>" disabled><br/>
+    <input class="no-border" type="text" name="username" value="<%= user.username %>" disabled><br/>
     <label for="email">Email</label><br/>
-    <input class="no-border" type="text" name="email" value="<%= local.email %>" disabled><br/>
+    <input class="no-border" type="text" name="email" value="<%= user.local.email %>" disabled><br/>
     <label for="comicSide">Side</label><br/>
     <select name="comicSide" disabled>
       <% if (comicSide == 'marvel') { %>
