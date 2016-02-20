@@ -11,13 +11,9 @@ router.get('/:id',isLoggedIn, function(req,res) {
   User.findOne({ 'username': username }, function (err, user) {
     request(marvelbaseURI+'Articles/Details?ids='+user.marvelFavorites+'&abstract=5&width=300&height=300', function(error, response, body) {
       if (!error && response.statusCode == 200) {
-        console.log("Marvel Request")
         var marvelBody = JSON.parse(body);
         request(dcbaseURI+'Articles/Details?ids='+user.dcFavorites+'&abstract=5&width=300&height=300', function(error, response, body) {
           if (!error && response.statusCode == 200) {
-            console.log("DC Request");
-            console.log(marvelBody);
-            console.log(body);
             res.render('profile/index.ejs', {user: user, apiResultsmarvel: marvelBody, apiResultsdc: JSON.parse(body)})
           }
         })

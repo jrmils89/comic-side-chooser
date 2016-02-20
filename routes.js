@@ -60,7 +60,6 @@ module.exports = function(app,passport) {
   );
 
   app.post('/login/:id', passport.authenticate('local-login', {failureRedirect: '/loginFail' }), function(req, res) {
-      console.log(req.user);
       User.findByIdAndUpdate(req.user.id, { comicSide: req.params.id }, {upsert: true}, function(err, user) {
           res.send({result: {id: req.params.id, href: '/'+req.params.id, success: true}})
       })
