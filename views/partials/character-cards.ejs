@@ -3,7 +3,9 @@
   <div class="card-container h">
       <div class="front">
         <% if (apiResults.items[itemId].thumbnail != undefined) { %>
-        <img class='index-image' src="<%= apiResults.items[itemId].thumbnail %>" alt="" />
+        <a href="<%= comic %>/characters/<%= data[i].name %>">
+          <img class='index-image' src="<%= apiResults.items[itemId].thumbnail %>" alt="" />
+        </a>
         <% } %>
       </div>
       <div class="back">

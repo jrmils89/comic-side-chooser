@@ -244,8 +244,7 @@ h2 {
   display: flex;
   position: absolute;
   height: 25px;
-  width: 100%;
-  text-align: right;
+  padding-left: .3em;
 }
 
 .button-remove {
@@ -265,6 +264,25 @@ h2 {
   padding: 10px;
   border-radius: 10px;
 
+}
+
+.signup-form {
+  width: 85%;
+  background: #c3c3c3;
+  height: 75%;
+  padding: .4em;
+  border-radius: 10px;
+  border: solid 1px black;
+  color: black;
+}
+
+.signup-form button, .signup-form select, .signup-form input {
+  color: black;
+  width: 50%;
+  height: 3em;
+  border: solid 1px black;
+  margin-bottom: .3em;
+  border-radius: 5px;
 }
 
 #favorites {
@@ -415,6 +433,10 @@ select {
   .content-container {
     position: absolute;;
     top: 2em;
+  }
+
+  .signup-form {
+    width: 50%;
   }
 
   #favorites {
