@@ -70,4 +70,14 @@ router.post('/favorites/:id', function(req, res) {
 })
 
 
+router.get('/search', function(req,res) {
+  console.log(req.query.q);
+  var search = '/'+req.query.q+'/i';
+  DCComic.find({name: new RegExp(req.query.q,"i")},{name: 1, _id: 1}).sort({ appearances : -1}).exec(function(err, data){
+    res.send(data);
+  });
+
+})
+
+
 module.exports = router;

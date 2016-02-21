@@ -27,8 +27,8 @@ router.post('/:id', isLoggedIn, function(req, res) {
   var username = req.params.id;
   User.findOneAndUpdate({ 'username': username }, {
     username: req.body.username,
-    email: req.body.email, comicSide:
-    req.body.comicSide },
+    "local.email": req.body.email, 
+    comicSide: req.body.comicSide },
     function(err, user) {
       if (err) {
         res.redirect('/profile/'+username)
