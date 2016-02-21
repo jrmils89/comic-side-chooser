@@ -3,14 +3,14 @@
   <div class="card-container h">
       <div class="front">
         <% if (apiResults.items[itemId].thumbnail != undefined) { %>
-        <a href="<%= comic %>/characters/<%= data[i].name %>">
+        <a href="<%= comic %>/characters/<%= data[i].page_id %>">
           <img class='index-image' src="<%= apiResults.items[itemId].thumbnail %>" alt="" />
         </a>
         <% } %>
       </div>
       <div class="back">
         <div class='character-container-card'>
-          <h3><a href="<%= comic %>/characters/<%= data[i].name %>"><%= data[i].name %></a></h3>
+          <h3><a href="<%= comic %>/characters/<%= data[i].page_id %>"><%= data[i].name %></a></h3>
           <% if (loggedIn) {%>
             <form class="" action="<%=comic%>/favorites/<%= data[i].page_id %>" method="post">
               <button type="submit" name="button">Favorite</button>

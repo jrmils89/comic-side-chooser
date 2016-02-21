@@ -84,7 +84,7 @@ router.post('/favorites/:id', function(req, res) {
 })
 
 router.get('/characters/:id', function(req, res) {
-  Marvel.findOne({name: req.params.id}, function(err, data) {
+  Marvel.findOne({page_id: req.params.id}, function(err, data) {
     request(baseURI+'Articles/AsSimpleJson?id='+data.page_id, function(error, response, body) {
       if (!error && response.statusCode == 200) {
         var firstResult = JSON.parse(body);
@@ -101,7 +101,7 @@ router.get('/characters/:id', function(req, res) {
 router.get('/search', function(req,res) {
   console.log(req.query.q);
   var search = '/'+req.query.q+'/i';
-  Marvel.find({name: new RegExp(req.query.q,"i")},{name: 1, _id: 1}).sort({ appearances : -1}).exec(function(err, data){
+  Marvel.find({name: new RegExp(req.query.q,"i")},{name: 1, _id: 1, urlslug: 1, page_id: 1}).sort({ appearances : -1}).exec(function(err, data){
     res.send(data);
   });
 

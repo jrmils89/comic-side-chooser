@@ -25,7 +25,7 @@ window.onload = function() {
 })
 .data( "ui-autocomplete" )._renderItem = function( ul, item ) {
    return $( "<li>" )
-   .append( "<a href='"+window.location.pathname+"/characters/"+item.name+"'>" + item.name +"</a>" )
+   .append( "<a href='"+window.location.pathname+"/characters/"+item.page_id+"'>" + item.name +"</a>" )
    .appendTo( ul );
 };
 });
