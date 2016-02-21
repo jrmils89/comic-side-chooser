@@ -73,7 +73,12 @@ router.get('/characters/:id', function(req, res) {
   DCComic.findOne({name: req.params.id}, function(err, data) {
     request(baseURI+'Articles/AsSimpleJson?id='+data.page_id, function(error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.render('characters/index.ejs', {data: data, comic: 'dc', apiResults: JSON.parse(body)});
+        var firstResult = JSON.parse(body);
+        request(baseURI+'Articles/Details?ids='+data.page_id+'&abstract=5&width=300&height=500', function(error, response, body) {
+          if (!error && response.statusCode == 200) {
+            res.render('characters/index.ejs', {data: data, comic: 'dc', apiResults: firstResult, articleDetail: JSON.parse(body)});
+          }
+        })
       }
     })
   });

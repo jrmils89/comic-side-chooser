@@ -382,18 +382,23 @@ h2 {
   color: #ba3232;
   font-family: 'Marvel', 'Code', sans-serif;
   font-size: 1.3em;
+  margin-bottom: .2em;
 }
 
 .character-section-header-marvel-large {
   color: #ba3232;
   font-family: 'Marvel', 'Code', sans-serif;
   font-size: 3em;
+  margin-bottom: .2em;
+
 }
 
 .character-section-header-dc {
   color: #003F5E;
   font-family: 'DC', 'Code', sans-serif;
   font-size: 1.3em;
+  margin-bottom: .2em;
+
 }
 
 .character-section-header-dc-large {
@@ -402,12 +407,18 @@ h2 {
   font-size: 3em;
 }
 
+.character-thumbnail {
+  border-radius: 5px;
+  border: solid 1px black;
+}
 
 .character-section-paragraph-marvel, .character-section-paragraph-dc {
   margin-bottom: .4em;
   text-align: left;
   font-size: .8em;
-  color: white;
+  color: black;
+  font-weight: bold;
+  line-height: 1.2;
 }
 
 select {
