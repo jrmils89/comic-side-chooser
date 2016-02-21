@@ -1,0 +1,14 @@
+<h1 class="character-section-header-<%=comic%>-large"><%= data.name %></h1>
+<div class="character-info-container">
+  <% for (var i = 0; i < apiResults.sections.length; i++) {%>
+    <% var array = ['Overview','Notes','Trivia','Links and References','Discover and Discuss','Recommended Reading','Related','Links'];
+        if (array.indexOf(apiResults.sections[i].title) < 0 && apiResults.sections[i].level != 1) {%>
+      <section class="character-section-<%=comic%>">
+        <h1 class="character-section-header-<%=comic%>"><%= apiResults.sections[i].title %></h1>
+        <% for (var j = 0; j < apiResults.sections[i].content.length; j++) {%>
+          <p class="character-section-paragraph-<%=comic%>"><%= apiResults.sections[i].content[j].text %></p>
+        <%}%>
+      <% } %>
+    </section>
+  <%}%>
+</div>

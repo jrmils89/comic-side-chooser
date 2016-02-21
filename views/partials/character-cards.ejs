@@ -8,7 +8,7 @@
       </div>
       <div class="back">
         <div class='character-container-card'>
-          <h3><%= data[i].name %></h3>
+          <h3><a href="<%= comic %>/characters/<%= data[i].name %>"><%= data[i].name %></a></h3>
           <% if (loggedIn) {%>
             <form class="" action="<%=comic%>/favorites/<%= data[i].page_id %>" method="post">
               <button type="submit" name="button">Favorite</button>

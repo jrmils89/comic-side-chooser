@@ -69,6 +69,16 @@ router.post('/favorites/:id', function(req, res) {
   }
 })
 
+router.get('/characters/:id', function(req, res) {
+  DCComic.findOne({name: req.params.id}, function(err, data) {
+    request(baseURI+'Articles/AsSimpleJson?id='+data.page_id, function(error, response, body) {
+      if (!error && response.statusCode == 200) {
+        res.render('characters/index.ejs', {data: data, comic: 'dc', apiResults: JSON.parse(body)});
+      }
+    })
+  });
+})
+
 
 router.get('/search', function(req,res) {
   console.log(req.query.q);

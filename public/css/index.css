@@ -347,6 +347,51 @@ h2 {
   color: inherit;
 }
 
+.character-info-container {
+  padding: 5px;
+
+}
+
+.character-section-marvel,.character-section-dc  {
+  background: #c3c3c3;
+  border-radius: 5px;
+  border: solid 1px black;
+  padding: 5px;
+  margin-bottom: .4em;
+}
+
+.character-section-header-marvel {
+  color: #ba3232;
+  font-family: 'Marvel', 'Code', sans-serif;
+  font-size: 1.3em;
+}
+
+.character-section-header-marvel-large {
+  color: #ba3232;
+  font-family: 'Marvel', 'Code', sans-serif;
+  font-size: 3em;
+}
+
+.character-section-header-dc {
+  color: #003F5E;
+  font-family: 'DC', 'Code', sans-serif;
+  font-size: 1.3em;
+}
+
+.character-section-header-dc-large {
+  color: #003F5E;
+  font-family: 'DC', 'Code', sans-serif;
+  font-size: 3em;
+}
+
+
+.character-section-paragraph-marvel, .character-section-paragraph-dc {
+  margin-bottom: .4em;
+  text-align: left;
+  font-size: .8em;
+  color: white;
+}
+
 select {
   font-family: 'Code', sans-serif;
   width: 75%;

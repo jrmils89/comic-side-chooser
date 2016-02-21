@@ -85,9 +85,9 @@ router.post('/favorites/:id', function(req, res) {
 
 router.get('/characters/:id', function(req, res) {
   Marvel.findOne({name: req.params.id}, function(err, data) {
-    request(baseURI+'Articles/AsSimpleJson?id='+data.page_id+'&abstract=500&width=300&height=300', function(error, response, body) {
+    request(baseURI+'Articles/AsSimpleJson?id='+data.page_id, function(error, response, body) {
       if (!error && response.statusCode == 200) {
-        res.send({data: data, comic: 'marvel', apiResults: JSON.parse(body)});
+        res.render('characters/index.ejs', {data: data, comic: 'marvel', apiResults: JSON.parse(body)});
       }
     })
   });
