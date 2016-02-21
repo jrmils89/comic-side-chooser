@@ -7,7 +7,7 @@ var baseURI = 'https://dc.wikia.com/api/v1/';
 var User = require('../models/user.js');
 
 
-router.get('/seed', function(req, res) {
+router.get('/seed', isLoggedIn, isAdmin, function(req, res) {
   DCComic.create(dcData, function(err) {
       res.send(dcData);
   });
@@ -94,5 +94,25 @@ router.get('/search', function(req,res) {
 
 })
 
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+
+
+function isAdmin(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.user.isAdmin)
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 module.exports = router;

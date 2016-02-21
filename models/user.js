@@ -15,7 +15,8 @@ var userSchema = new Schema({
   },
   comicSide: String,
   marvelFavorites: Array,
-  dcFavorites: Array
+  dcFavorites: Array,
+  isAdmin: {type: Boolean, default: false}
 })
 
 userSchema.methods.generateHash = function(password) {

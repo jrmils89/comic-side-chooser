@@ -8,7 +8,7 @@ var User = require('../models/user.js');
 
 
 
-router.get('/seed', function(req, res) {
+router.get('/seed', isLoggedIn, isAdmin, function(req, res) {
   Marvel.create(marvelData, function(err) {
       console.log('Seeded?!');
       res.send(marvelData);
@@ -16,7 +16,7 @@ router.get('/seed', function(req, res) {
 });
 
 
-router.get('/testAPI', function(req, res) {
+router.get('/testAPI', isLoggedIn, isAdmin, function(req, res) {
   request(baseURI+'Articles/Details'+'?ids=1678,7139&abstract=500&width=200&height=200', function(error, response, body) {
     if (!error && response.statusCode == 200) {
       res.send(JSON.parse(body))
@@ -107,6 +107,25 @@ router.get('/search', function(req,res) {
 
 })
 
+function isLoggedIn(req, res, next) {
 
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
+
+
+function isAdmin(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (req.user.isAdmin)
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 module.exports = router;
