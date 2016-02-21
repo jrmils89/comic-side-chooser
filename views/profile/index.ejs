@@ -2,14 +2,18 @@
   <h1 class="favorites-header">Favorites</h1>
 
   <section class="marvel-favorites">
+    <h3>Marvel</h3>
+
     <% for (var i = 0; i < user.marvelFavorites.length; i++) {%>
       <% var itemId = user.marvelFavorites[i]; %>
       <% if (apiResultsmarvel.items[itemId].thumbnail != undefined) { %>
         <div class="card-container-mini h">
           <div class="front">
-              <form action="/users/<%= userId %>/marvel/<%= itemId %>" method="post">
-                <button type="submit" name="button">Remove</button>
+            <% if (userName == user.username) {%>
+              <form class="remove-button" action="/users/<%= userId %>/marvel/<%= itemId %>" method="post">
+                <button class="button-remove" type="submit" name="button">X</button>
               </form>
+            <% } %>
               <img class='index-image' src="<%= apiResultsmarvel.items[itemId].thumbnail %>" alt="" />
             </div>
         </div>
@@ -17,14 +21,17 @@
     <% } %>
   </section>
   <section class="dc-favorites">
+    <h3>DC</h3>
     <% for (var i = 0; i < user.dcFavorites.length; i++) {%>
       <% var dcitemId = user.dcFavorites[i]; %>
       <% if (apiResultsdc.items[dcitemId].thumbnail != undefined) { %>
         <div class="card-container-mini h">
           <div class="front">
-            <form action="/users/<%= userId %>/dc/<%= dcitemId %>" method="post">
-              <button type="submit" name="button">Remove</button>
+            <% if (userName == user.username) {%>
+            <form class="remove-button" action="/users/<%= userId %>/dc/<%= dcitemId %>" method="post">
+              <button class="button-remove" type="submit" name="button">X</button>
             </form>
+            <% } %>
               <img class='index-image' src="<%= apiResultsdc.items[dcitemId].thumbnail %>" alt="" />
             </div>
         </div>

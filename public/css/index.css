@@ -226,6 +226,23 @@ h2 {
   display: none;
 }
 
+.remove-button {
+  display: flex;
+  position: absolute;
+  height: 25px;
+  width: 100%;
+  text-align: right;
+}
+
+.button-remove {
+  height: 25px;
+  width: 100%;
+  text-align: right;
+  border: none;
+  font-weight: bold;
+  padding-right: 2px;
+}
+
 .marvel-favorites, .dc-favorites {
   height: 8em;
   border: solid 1px black;
