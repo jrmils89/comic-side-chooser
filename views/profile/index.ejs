@@ -14,7 +14,7 @@
                 <button class="button-remove" type="submit" name="button">X</button>
               </form>
             <% } %>
-            <a href="/marvel/characters/<%= apiResultsmarvel.items[itemId].title%>">
+            <a href="/marvel/characters/<%= itemId%>">
               <img class='index-image' src="<%= apiResultsmarvel.items[itemId].thumbnail %>" alt="" />
             </a>
             </div>
@@ -34,7 +34,7 @@
               <button class="button-remove" type="submit" name="button">X</button>
             </form>
             <% } %>
-            <a href="/dc/characters/<%= apiResultsdc.items[dcitemId].title%>">
+            <a href="/dc/characters/<%= dcitemId %>">
               <img class='index-image' src="<%= apiResultsdc.items[dcitemId].thumbnail %>" alt="" />
             </a>
             </div>
