@@ -5,6 +5,14 @@ var request = require('request');
 var marvelbaseURI = 'https://marvel.wikia.com/api/v1/';
 var dcbaseURI = 'https://dc.wikia.com/api/v1/';
 
+
+// INDEX
+// The index route for profiles redirects you to your own profile
+router.get('/', function(req, res) {
+  var username = res.locals.userName;
+  res.redirect('/profile/'+username);
+})
+
 // SHOW
 router.get('/:id', isLoggedIn, function(req, res) {
   // Find the user
