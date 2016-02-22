@@ -1,0 +1,25 @@
+<% for (var i = 0; i < data.marvel.length; i++) { %>
+  <table>
+    <thead>
+      <th>
+        <%= data.marvel[i]._id.gender %>
+      </th>
+      <th>
+        <%= data.marvel[i]._id.year %>
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <label for="">Count:</label>
+          <%= data.marvel[i].count %>
+        </td>
+        <td>
+          <label for="">Appearances:</label>
+          <%= data.marvel[i].appearances %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% } %>
+<%= data.dc.length %>
