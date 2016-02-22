@@ -98,10 +98,11 @@ require('./routes.js')(app, passport);
 // ===============================================================================
 // Listen To The World!
 // ===============================================================================
-db.once('open', function() {
-  console.log('Connected To Mongoose')
+var server = db.once('open', function() {
+  console.log('Connected To Mongoose');
   app.listen(port, function() {
     console.log('Listening....')
   })
 })
 
+module.exports = server;
