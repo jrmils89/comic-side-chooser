@@ -39,6 +39,10 @@ describe('CREATE USER TESTS: ', function() {
       Cookies = res.headers['set-cookie'];
       done();
     })
+
+    //Note:
+    // This has thrown a false error at times due to bad mongo indexes. If this throws and error
+    // and you don't think it should, perhaps check to see if the indexes on the mongo collection are out of date 
   })
 
   it('GET /profile/testusername', function (done) {
