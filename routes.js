@@ -4,11 +4,13 @@ module.exports = function(app,passport) {
   var marvelController = require('./controllers/marvelController');
   var dccomicController = require('./controllers/dccomicController');
   var profilesController = require('./controllers/profilesController');
+  var statsController = require('./controllers/statsController');
 
   app.use('/users', usersController);
   app.use('/marvel', marvelController);
   app.use('/dc', dccomicController);
   app.use('/profile', profilesController);
+  app.use('/stats', statsController);
 
   app.get('/', function(req, res) {
    if(res.locals.loggedIn) {
@@ -55,7 +57,7 @@ module.exports = function(app,passport) {
 
   app.post('/signup', passport.authenticate('local-signup', {failureRedirect: '/loginFail' }),
     function(req, res) {
-      res.redirect('/');
+      res.send({result: {href: '/', success: true}})
     }
   );
 
