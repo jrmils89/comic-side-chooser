@@ -63,7 +63,6 @@ window.onload = function() {
         label: data.data.dc[i]._id
       };
       secondData.push(obj);
-      console.log(secondData);
     }
     // Create the DC chart
     var newChart = new Chart(ctx2).PolarArea(secondData, options);
