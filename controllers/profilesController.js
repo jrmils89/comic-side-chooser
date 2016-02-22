@@ -20,24 +20,29 @@ router.get('/:id', isLoggedIn, function(req, res) {
   User.findOne({
     'username': username
   }, function(err, user) {
-    // Get the API results for the DC and Marvel favorites so that their favorite cards have information
-    request(marvelbaseURI + 'Articles/Details?ids=' + user.marvelFavorites + '&abstract=5&width=300&height=300', function(error, response, body) {
-      if (!error && response.statusCode == 200) {
-        // Store the marvel results
-        var marvelBody = JSON.parse(body);
-        // Get the DC endpoint
-        request(dcbaseURI + 'Articles/Details?ids=' + user.dcFavorites + '&abstract=5&width=300&height=300', function(error, response, body) {
-          if (!error && response.statusCode == 200) {
-            // Send back the data
-            res.render('profile/index.ejs', {
-              user: user,
-              apiResultsmarvel: marvelBody,
-              apiResultsdc: JSON.parse(body)
-            });
-          };
-        });
-      };
-    });
+    if (user) {
+      // Get the API results for the DC and Marvel favorites so that their favorite cards have information
+      request(marvelbaseURI + 'Articles/Details?ids=' + user.marvelFavorites + '&abstract=5&width=300&height=300', function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          // Store the marvel results
+          var marvelBody = JSON.parse(body);
+          // Get the DC endpoint
+          request(dcbaseURI + 'Articles/Details?ids=' + user.dcFavorites + '&abstract=5&width=300&height=300', function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+              // Send back the data
+              res.render('profile/index.ejs', {
+                user: user,
+                apiResultsmarvel: marvelBody,
+                apiResultsdc: JSON.parse(body)
+              });
+            };
+          });
+        };
+      });
+    } else {
+      var username = res.locals.userName
+      res.redirect('/profile/'+username)
+    }
   });
 });
 
