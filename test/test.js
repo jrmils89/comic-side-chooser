@@ -26,10 +26,11 @@ describe('CREATE USER', function() {
   it('TEST /signup', function(done) {
     request(url)
     .post('/signup')
-    .send({"email": "user_test@example.com", "password": "123", "username":"testusername"})
+    .send({"email": "user_test@example.com", "password":"123", "username":"testusername"})
     .set('Accept','application/json')
     .expect(200)
     .end(function(err, res) {
+      if (err) throw (err);
       Cookies = res.headers['set-cookie'];
       done();
     })
@@ -41,13 +42,14 @@ describe('CREATE USER', function() {
       .set('Cookie', Cookies)
       .expect(200)
       .end(function (err, res) {
+        if (err) throw (err);
         done();
       });
   });
 
   it('Remove the test user', function (done) {
     User.findOneAndRemove({username: "testusername"}, function(err, data) {
-      console.log(data);
+      if (err) throw (err);
       done();
     })
   });
