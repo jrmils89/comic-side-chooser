@@ -13,7 +13,7 @@
           <h3><a href="<%= comic %>/characters/<%= data[i].page_id %>"><%= data[i].name %></a></h3>
           <% if (loggedIn) {%>
             <form class="" action="<%=comic%>/favorites/<%= data[i].page_id %>" method="post">
-              <button type="submit" name="button">Favorite</button>
+              <button id="favorite-button" type="submit" name="button">Save To Favorites</button>
             </form>
           <% } %>
           <p><%= apiResults.items[itemId].abstract %><a href="http://<%= comic %>.wikia.com<%= data[i].urlslug %>">(Read More)</a></p>

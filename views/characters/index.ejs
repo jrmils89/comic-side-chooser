@@ -1,4 +1,9 @@
 <img class="character-thumbnail" src="<%= articleDetail.items[data.page_id].thumbnail %>" alt="character-thumbnail" />
+<% if (loggedIn) {%>
+  <form class="favorites" action="/<%=comic%>/favorites/<%= data.page_id %>" method="post">
+    <button id="favorite-button" type="submit" name="button">Save To Favorites</button>
+  </form>
+<% } %>
 <h1 class="character-section-header-<%=comic%>-large"><%= data.name %></h1>
 <div class="character-info-container">
   <% for (var i = 0; i < apiResults.sections.length; i++) {%>

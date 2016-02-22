@@ -308,6 +308,17 @@ h2 {
   font-size: 1em;
 }
 
+#favorite-button {
+  border: 0px;
+  color: white;
+  font-weight: bold;
+}
+
+#favorite-button:hover {
+  cursor: pointer;
+  color: #51b0d7;
+}
+
 .favorites-header {
   width: 100%;
   position: absolute;
