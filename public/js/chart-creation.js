@@ -11,7 +11,7 @@ window.onload = function() {
       segmentStrokeWidth : 1,
       segmentStrokeColor : "black",
       scaleShowLabelBackdrop : false,
-      scaleBeginAtZero : false
+      scaleBeginAtZero : true
     }
 
     // Get the context for the chart

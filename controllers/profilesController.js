@@ -33,6 +33,17 @@ router.get('/:id', isLoggedIn, function(req, res) {
   });
 });
 
+// SHOW/JSON
+router.get('/:id/JSON', isLoggedIn, function(req, res) {
+  // Find the user
+  var username = req.params.id;
+  User.findOne({
+    'username': username
+  }, function(err, user) {
+    res.send(user);
+  });
+});
+
 // UPDATE
 router.post('/:id', isLoggedIn, function(req, res) {
   // Get the user to update and then perform the update

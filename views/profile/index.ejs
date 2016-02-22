@@ -1,63 +1,16 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" charset="utf-8"></script>
 <script src="/js/profile.js" charset="utf-8"></script>
-<section id="favorites">
-  <h1 class="favorites-header">Favorites</h1>
-  <section class="marvel-favorites">
-    <h3>Marvel</h3>
+<script src="/js/chart-creation-profile.js" charset="utf-8"></script>
 
-    <% for (var i = 0; i < user.marvelFavorites.length; i++) {%>
-      <% var itemId = user.marvelFavorites[i]; %>
-      <% if (apiResultsmarvel.items[itemId].thumbnail != undefined) { %>
-        <div class="card-container-mini h">
-          <div class="front">
-            <% if (userName == user.username) {%>
-              <form class="remove-button" action="/users/<%= userId %>/marvel/<%= itemId %>" method="post">
-                <button class="button-remove" type="submit" name="button">X</button>
-              </form>
-            <% } %>
-            <a href="/marvel/characters/<%= itemId%>">
-              <img class='index-image' src="<%= apiResultsmarvel.items[itemId].thumbnail %>" alt="" />
-            </a>
-            </div>
-        </div>
-      <% } %>
-    <% } %>
-  </section>
-  <section class="dc-favorites">
-    <h3>DC</h3>
-    <% for (var i = 0; i < user.dcFavorites.length; i++) {%>
-      <% var dcitemId = user.dcFavorites[i]; %>
-      <% if (apiResultsdc.items[dcitemId].thumbnail != undefined) { %>
-        <div class="card-container-mini h">
-          <div class="front">
-            <% if (userName == user.username) {%>
-            <form class="remove-button" action="/users/<%= userId %>/dc/<%= dcitemId %>" method="post">
-              <button class="button-remove" type="submit" name="button">X</button>
-            </form>
-            <% } %>
-            <a href="/dc/characters/<%= dcitemId %>">
-              <img class='index-image' src="<%= apiResultsdc.items[dcitemId].thumbnail %>" alt="" />
-            </a>
-            </div>
-        </div>
-      <% } %>
-    <% } %>
-  </section>
-</section>
-<section id="profile-container">
+<section class="profile-info-container">
+  <h2 class="profile-header">Profile</h2>
   <% if (comicSide == 'marvel') { %>
-    <div class="gif-logo">
-      <img src="/gifs/Marvel-Logo.gif" alt="Marvel Logo" />
+    <div class="gif-logo-marvel">
     </div>
   <% } else { %>
-    <div class="gif-logo">
-      <img src="/gifs/DC-Logo.gif" alt="DC Comics Logo" />
+    <div class="gif-logo-dc">
     </div>
   <% } %>
-
-
-</section>
-<section class="profile-info">
-  <h3>Profile Info</h3>
   <% if (userName == user.username) {%>
     <button id="edit-profile-button" class="edit-button">Edit</button>
   <%}%>
@@ -78,4 +31,49 @@
     </select>
     <button id="edit-button-submit" class="edit-button-submit" style="display: none;" type="submit" name="button" disabled="disabled">Submit</button>
   </form>
+  <div class="chart">
+    <h3>Fave Breakdown</h3>
+    <canvas id="marvel-male-female"></canvas>
+    <div id="marvel-gender-legend" class="chart-legend"></div>
+  </div>
+</section>
+<section class="faves">
+  <h2 class="profile-header">Marvel</h2>
+  <% for (var i = 0; i < user.marvelFavorites.length; i++) {%>
+    <% var itemId = user.marvelFavorites[i]; %>
+    <% if (apiResultsmarvel.items[itemId].thumbnail != undefined) { %>
+      <div class="card-container-mini h">
+        <div class="front">
+          <% if (userName == user.username) {%>
+            <form class="remove-button" action="/users/<%= userId %>/marvel/<%= itemId %>" method="post">
+              <button class="button-remove" type="submit" name="button">X</button>
+            </form>
+          <% } %>
+          <a href="/marvel/characters/<%= itemId%>">
+            <img class='index-image' src="<%= apiResultsmarvel.items[itemId].thumbnail %>" alt="" />
+          </a>
+          </div>
+      </div>
+    <% } %>
+  <% } %>
+</section>
+<section class="faves">
+  <h2 class="profile-header">DC</h2>
+  <% for (var i = 0; i < user.dcFavorites.length; i++) {%>
+    <% var dcitemId = user.dcFavorites[i]; %>
+    <% if (apiResultsdc.items[dcitemId].thumbnail != undefined) { %>
+      <div class="card-container-mini h">
+        <div class="front">
+          <% if (userName == user.username) {%>
+          <form class="remove-button" action="/users/<%= userId %>/dc/<%= dcitemId %>" method="post">
+            <button class="button-remove" type="submit" name="button">X</button>
+          </form>
+          <% } %>
+          <a href="/dc/characters/<%= dcitemId %>">
+            <img class='index-image' src="<%= apiResultsdc.items[dcitemId].thumbnail %>" alt="" />
+          </a>
+          </div>
+      </div>
+    <% } %>
+  <% } %>
 </section>
