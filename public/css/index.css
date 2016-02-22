@@ -210,6 +210,25 @@ h2 {
 
 }
 
+.marvel-chart, .dc-chart {
+  width: 49%;
+  height: 45%;
+  display: inline-block;
+}
+
+.chart-legend li span {
+    display: inline-block;
+    list-style: none;
+    width: .8em;
+    height: .8em;
+    padding-right: .1em;
+}
+
+.chart-legend ul {
+    list-style: none;
+    text-align: left;
+}
+
 .image-container-marvel img, .image-container-dc img {
   min-height: 100%;
   max-width: 100%;

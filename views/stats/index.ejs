@@ -1,25 +1,13 @@
-<% for (var i = 0; i < data.marvel.length; i++) { %>
-  <table>
-    <thead>
-      <th>
-        <%= data.marvel[i]._id.gender %>
-      </th>
-      <th>
-        <%= data.marvel[i]._id.year %>
-      </th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <label for="">Count:</label>
-          <%= data.marvel[i].count %>
-        </td>
-        <td>
-          <label for="">Appearances:</label>
-          <%= data.marvel[i].appearances %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-<% } %>
-<%= data.dc.length %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" charset="utf-8"></script>
+<script src="/js/chart-creation.js" charset="utf-8"></script>
+
+<div class="marvel-chart">
+  <h1>Marvel Gender Breakdwon</h1>
+  <canvas id="marvel-male-female"></canvas>
+  <div id="marvel-gender-legend" class="chart-legend"></div>
+</div>
+<div class="dc-chart">
+  <h1>DC Gender Breakdwon</h1>
+  <canvas id="dc-male-female"></canvas>
+  <div id="dc-gender-legend" class="chart-legend"></div>
+</div>

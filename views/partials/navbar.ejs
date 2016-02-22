@@ -1,7 +1,6 @@
 
 <div class="nav-bar">
   <% if(loggedIn) {%>
-    <a href="/" class="nav-bar-button">Home</a>
     <a href="/profile/<%= userName %>" class="nav-bar-button">Profile</a>
   <% } %>
   <% if(!loggedIn) {%>
@@ -10,6 +9,9 @@
   <% } %>
   <a href="/marvel" class="nav-bar-button">Marvel Characters</a>
   <a href="/dc" class="nav-bar-button">DC Characters</a>
+  <% if(loggedIn) {%>
+    <a href="/stats" class="nav-bar-button">Stats</a>
+  <% } %>
   <a href="/about" class="nav-bar-button">About</a>
   <% if(!loggedIn) {%>
     <a href="/login" class="nav-bar-button">Login</a>

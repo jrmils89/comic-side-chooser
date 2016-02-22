@@ -6,47 +6,18 @@ var Marvel = require('../models/marvel.js');
 var User = require('../models/user.js');
 
 
-router.get('/', isLoggedIn, isAdmin, function(req, res) {
-  Marvel.aggregate(
-    [
-        {$match: {sex: { $ne: null }}},
-        { $group :
-            {
-                _id : { "gender" : "$sex", "year" : "$year" },
-                count: { $sum: 1 },
-                appearances: {$sum: "$appearances"}
-            }
-        },
-       {$sort: {appearances: -1}}
-    ]
-  ).exec(function(err, marvel) {
-
-    DCComic.aggregate(
-      [
-          {$match: {sex: { $ne: null }}},
-          { $group :
-              {
-                  _id : { "gender" : "$sex", "year" : "$year" },
-                  count: { $sum: 1 },
-                  appearances: {$sum: "$appearances"}
-              }
-          },
-         {$sort: {appearances: -1}}
-      ]
-    ).exec(function(err, dc) {
-      res.render('stats/index.ejs',{data: {marvel, dc}})
-    })
-  })
+router.get('/', isLoggedIn, function(req, res) {
+  res.render('stats/index.ejs')
 });
 
-router.get('/json', function(req, res) {
+router.get('/gender/json', function(req, res) {
   Marvel.aggregate(
     [
         {$match: {sex: { $ne: null }}},
         { $group :
             {
-                _id : { "gender" : "$sex", "year" : "$year" },
-                count: { $sum: 1 },
+                _id : "$sex",
+                value: { $sum: 1 },
                 appearances: {$sum: "$appearances"}
             }
         },
@@ -59,8 +30,8 @@ router.get('/json', function(req, res) {
           {$match: {sex: { $ne: null }}},
           { $group :
               {
-                  _id : { "gender" : "$sex", "year" : "$year" },
-                  count: { $sum: 1 },
+                  _id : "$sex",
+                  value: { $sum: 1 },
                   appearances: {$sum: "$appearances"}
               }
           },
