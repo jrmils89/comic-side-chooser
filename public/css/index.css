@@ -402,6 +402,7 @@ h2 {
   border-radius: 5px;
   margin-bottom: .2em;
   color: black;
+  font-weight: bold;
 }
 .edit-profile label {
   font-size: .7em;
@@ -503,6 +504,8 @@ select {
   height: 1.2em;
   background: transparent;
   border: none;
+  font-weight: bold;
+  color: black;
 }
 
 .gif-logo-marvel {
