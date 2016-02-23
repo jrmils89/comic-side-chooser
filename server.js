@@ -9,22 +9,27 @@ var methodOverride = require('method-override');
 var expressLayouts = require('express-ejs-layouts');
 var app = express();
 var mongoose = require('mongoose');
-var db = mongoose.connection;
 var session        = require('express-session');
 var cookieParser   = require('cookie-parser');
 var passport       = require('passport');
-var port = process.env.PORT || 3000;
 
 // ===============================================================================
 // Setup Dat Port Info, like Columbus
 // ===============================================================================
 
+var port = process.env.PORT || 3000;
+
+// ===============================================================================
+// Database Stuff
+// ===============================================================================
+
+var db = mongoose.connection;
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/comic-side';
+mongoose.connect(mongoUri);
+
 // ===============================================================================
 // Middlewares
 // ===============================================================================
-
-var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/comic-side';
-mongoose.connect(mongoUri);
 
 // Add ability to render static files
 app.use(express.static('public'));
@@ -41,14 +46,18 @@ app.set('layout extractStyles', true)
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+// Use the passport config
 require('./config/passport')(passport);
 
+// Cookie and session stuff
 app.use(cookieParser());
+app.use(session({ secret: 'comicsidesapp' }));
 
-app.use(session({ secret: 'emailcomposerapp' }));
+// Using passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Method override for submiting things other than POSTs
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     var method = req.body._method;
@@ -60,14 +69,9 @@ app.use(methodOverride(function(req, res){
 // Setting up that stalker stuff
 logger.token('ip_address', function(req, res){ return req.connection._peername.address; });
 logger.token('userid', function(req, res){ if (req.user) return req.user._id ; });
-
 app.use(logger(':method :url :status :user-agent :ip_address user_id: :userid :remote-addr :response-time ms'));
 
-// app.use(function(req, res, next) {
-//   res.locals.loggedIn = req.isAuthenticated();
-//   next();
-// });
-
+// Setting up local variables to use across the app
 app.use(function(req, res, next) {
   res.locals.loggedIn = req.isAuthenticated();
   if (req.user) {
@@ -90,12 +94,8 @@ app.use(function(req, res, next) {
 // ===============================================================================
 // Routing / Contorllers
 // ===============================================================================
+
 require('./routes.js')(app, passport);
-
-// ===============================================================================
-// Dis Means Bizness
-// ===============================================================================
-
 
 // ===============================================================================
 // Listen To The World!
