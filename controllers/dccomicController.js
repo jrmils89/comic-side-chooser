@@ -112,8 +112,8 @@ router.get('/characters/:id', function(req, res) {
 router.post('/favorites/:id', function(req, res) {
   if (res.locals.loggedIn) {
     // If the user is logged in, add the character to their DC favorites and redirect back to the /dc root page
-    User.findOneAndUpdate(res.locals.userId, {
-      $push: {
+    User.findByIdAndUpdate(res.locals.userId, {
+      $addToSet: {
         dcFavorites: req.params.id
       }
     }, function(err, data) {
