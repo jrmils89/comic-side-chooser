@@ -1,7 +1,15 @@
 <% for (var i=0; i < data.length; i++) {
   var itemId = data[i].page_id; %>
   <div class="card-container h">
-      <div class="front">
+    <% if (loggedIn) {%>
+      <% if (comic == 'marvel' && marvelFaves.indexOf(itemId) >= 0 || comic == 'dc' && dcFaves.indexOf(itemId) >= 0) { %>
+        <div id="front-card" class="front faved">
+      <% } else { %>
+        <div id="front-card" class="front">
+      <% } %>
+    <% } else {%>
+      <div id="front-card" class="front">
+    <% } %>
         <% if (apiResults.items[itemId].thumbnail != undefined) { %>
         <a href="<%= comic %>/characters/<%= data[i].page_id %>">
           <img class='index-image' src="<%= apiResults.items[itemId].thumbnail %>" alt="" />
@@ -12,9 +20,11 @@
         <div class='character-container-card'>
           <h3><a href="<%= comic %>/characters/<%= data[i].page_id %>"><%= data[i].name %></a></h3>
           <% if (loggedIn) {%>
-            <form class="" action="<%=comic%>/favorites/<%= data[i].page_id %>" method="post">
-              <button id="favorite-button" type="submit" name="button">Save To Favorites</button>
-            </form>
+            <% if (!(comic == 'marvel' && marvelFaves.indexOf(itemId) >= 0 || comic == 'dc' && dcFaves.indexOf(itemId) >= 0)) { %>
+              <form class="" action="<%=comic%>/favorites/<%= data[i].page_id %>" method="post">
+                <button id="favorite-button" type="submit" name="button">Save To Favorites</button>
+              </form>
+              <% } %>
           <% } %>
           <p><%= apiResults.items[itemId].abstract %><a href="http://<%= comic %>.wikia.com<%= data[i].urlslug %>">(Read More)</a></p>
         </div>

@@ -1,4 +1,5 @@
 
+
 @font-face {
   font-family: 'Code';
   src: url('/fonts/CODELight.otf')
@@ -181,6 +182,12 @@ a:hover {
 
 .dc-favorites {
   background: #003F5E;
+}
+
+.faved .index-image {
+  border-color: #ffa700;
+  box-shadow: 0 0 5px #ffa700;
+
 }
 
 .hero-side:hover {
