@@ -43,6 +43,41 @@ router.get('/gender/json', function(req, res) {
   })
 });
 
+
+router.get('/eyecolor/json', function(req, res) {
+  Marvel.aggregate(
+    [
+      {$match: {eye: { $ne: null }}},
+      { $group :
+          {
+            _id : "$eye",
+            value: { $sum: 1 },
+          }
+      },
+      {$sort: {value: -1}}
+    ]
+  ).exec(function(err, marvel) {
+
+    DCComic.aggregate(
+      [
+        {$match: {eye: { $ne: null }}},
+        { $group :
+            {
+              _id : "$eye",
+              value: { $sum: 1 },
+            }
+        },
+        {$sort: {value: -1}}
+      ]
+    ).exec(function(err, dc) {
+      res.send({data: {marvel, dc}})
+    })
+  })
+});
+
+
+
+
 function isLoggedIn(req, res, next) {
   // if user is authenticated in the session, carry on
   if (req.isAuthenticated()) {

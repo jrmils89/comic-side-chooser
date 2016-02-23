@@ -63,6 +63,15 @@ button {
   font-size: 1em;
 }
 
+canvas {
+  padding: 5px;
+  border-radius: .7em;
+  border: solid 1px black;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-bottom: .2em;
+
+}
+
 .ui-autocomplete {
   width: 10%;
 }
@@ -230,12 +239,21 @@ h2 {
   display: inline-block;
 }
 
+.chart-header {
+  font-size: 1.2em;
+}
+.chart-legend {
+  clear: both;
+  float: left;
+}
+
 .chart-legend li span {
     display: inline-block;
     list-style: none;
     width: .8em;
     height: .8em;
-    padding-right: .1em;
+    padding-right: .2em;
+    margin-right: .2em;
 }
 
 .chart-legend ul {

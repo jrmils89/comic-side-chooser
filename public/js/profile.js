@@ -47,7 +47,7 @@ window.onload = function() {
       },
     ];
     // Create the Marvel Chart
-    var myNewChart = new Chart(ctx).PolarArea(myData, options);
+    var myNewChart = new Chart(ctx).Pie(myData, options);
     document.getElementById("marvel-gender-legend").innerHTML = myNewChart.generateLegend();
   });
 };
