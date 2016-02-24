@@ -1,7 +1,12 @@
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js" charset="utf-8"></script>
 <script src="js/autocomplete.js" charset="utf-8"></script>
-<input id="search" type="text" name="searchvalue" value="" placeholder="Search"><br/>
-<% include ../partials/character-cards.ejs %>
-<% if (!loggedIn) { %>
-<p>To See More Characters Please <a href="/login">Log In</a></p>
-<% } %>
+<section class="cards">
+  <input id="search" type="text" name="searchvalue" value="" placeholder="Search"><br/>
+  <% include ../partials/character-cards.ejs %>
+  <% if (!loggedIn) { %>
+  <p>To See More Characters Please <a href="/login">Log In</a></p>
+  <% } %>
+</section>
+<section class="chat">
+  <% include ../chat/index.ejs %>
+</section>

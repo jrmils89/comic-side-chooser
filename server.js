@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var session        = require('express-session');
 var cookieParser   = require('cookie-parser');
 var passport       = require('passport');
+var http = require('http');
 
 // ===============================================================================
 // Setup Dat Port Info, like Columbus
@@ -100,11 +101,23 @@ require('./routes.js')(app, passport);
 // ===============================================================================
 // Listen To The World!
 // ===============================================================================
-var server = db.once('open', function() {
+
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
+db.once('open', function() {
   console.log('Connected To Mongoose');
-  app.listen(port, function() {
+  server.listen(port, function() {
     console.log('Listening....')
   })
 })
+
+
 
 module.exports = server;
