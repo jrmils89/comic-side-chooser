@@ -27,5 +27,13 @@ userSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.local.password);
 };
 
+userSchema.methods.validEmail = function(email) {
+  var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/igm;
+  // Return TRUE for valid email
+  // Retrun FALSE for invalid email
+  return re.test(email);
+}
+
+
 var User = mongoose.model('User', userSchema);
 module.exports = User;

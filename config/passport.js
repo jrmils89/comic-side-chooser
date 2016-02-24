@@ -63,6 +63,16 @@ module.exports = function(passport) {
             newUser.comicSide = req.body.comicSide;
             newUser.local.password = newUser.generateHash(password);
 
+            // If the newUser doesn't have a valid email break
+            if (!newUser.validEmail(newUser.local.email)) {
+              return done(null, false);
+            }
+
+            // If the password is too short, break
+            if (password.length < 8) {
+              return done(null, false);
+            }
+
             // save the user
             newUser.save(function(err) {
               if (err)
