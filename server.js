@@ -93,23 +93,23 @@ app.use(function(req, res, next) {
 
 
 // ===============================================================================
-// Routing / Contorllers
+// Routing / Contorllers / Server Creation / Chatting
 // ===============================================================================
 
 require('./routes.js')(app, passport);
+
+// Create the server
+var server = http.createServer(app);
+
+// Require the chat and pass in the server
+require('./controllers/chatController.js')(server);
 
 // ===============================================================================
 // Listen To The World!
 // ===============================================================================
 
-var server = http.createServer(app);
-var io = require('socket.io').listen(server);
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-});
+
 
 db.once('open', function() {
   console.log('Connected To Mongoose');

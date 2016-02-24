@@ -5,12 +5,14 @@ module.exports = function(app,passport) {
   var dccomicController = require('./controllers/dccomicController');
   var profilesController = require('./controllers/profilesController');
   var statsController = require('./controllers/statsController');
+  var messageController = require('./controllers/messageController');
 
   app.use('/users', usersController);
   app.use('/marvel', marvelController);
   app.use('/dc', dccomicController);
   app.use('/profile', profilesController);
   app.use('/stats', statsController);
+  app.use('/messages', messageController);
 
   app.get('/', function(req, res) {
    if(res.locals.loggedIn) {
