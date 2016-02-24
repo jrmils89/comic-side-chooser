@@ -109,6 +109,7 @@ require('./controllers/chatController.js')(server);
 // ===============================================================================
 
 
+require('./data/cleanupScript.js');
 
 
 db.once('open', function() {
