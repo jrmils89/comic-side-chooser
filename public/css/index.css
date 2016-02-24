@@ -665,8 +665,7 @@ a.disabled:hover {
   }
 
   .cards {
-    float: left;
-    width: 72%;
+    width: 74%;
   }
   .chat {
     float: right;
