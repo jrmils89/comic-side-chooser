@@ -5,7 +5,6 @@ module.exports = function(app,passport) {
   var dccomicController = require('./controllers/dccomicController');
   var profilesController = require('./controllers/profilesController');
   var statsController = require('./controllers/statsController');
-  var socketController = require('./controllers/socketController');
 
   app.use('/users', usersController);
   app.use('/marvel', marvelController);
