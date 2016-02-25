@@ -31,7 +31,7 @@ mocha
 
 # Technologies
 
-This is an Node.JS / Express app. MongoDB is the DB being used. Templates and layouts are done with EJS. jQuery/jQuery UI/Javascript are used on the client side to handle much of the user interactions and rendering the charts.
+This is an Node.JS / Express app. MongoDB is the DB being used. Templates and layouts are done with EJS. jQuery/jQuery UI/Javascript are used on the client side to handle much of the user interactions and rendering the charts. The chat features are implemented using socket.io. 
 
 # 3rd Party Data & Credit
 
@@ -43,6 +43,7 @@ This is an Node.JS / Express app. MongoDB is the DB being used. Templates and la
 ###### JS Libraries
 * passport.js
 * chart.js
+* socket.io
 
 ###### jQuery Libraries
 * jQuery UI
