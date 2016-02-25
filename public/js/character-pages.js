@@ -1,7 +1,7 @@
 window.onload = function() {
   var socket = io();
 
-  $('form').submit(function() {
+  $('#chat').submit(function() {
     socket.emit('chat message', {
       msg: $('#m').val(),
       username: $('#m').attr("username")
